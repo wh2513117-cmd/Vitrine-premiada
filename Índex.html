@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vitrine Premiada</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#101010;color:white;font-family:Arial,sans-serif}
+header{text-align:center;padding:30px 15px;background:#080808;border-bottom:2px solid #c9a227}
+h1{color:#d6b443;font-size:32px;margin:5px}
+header p{color:#ccc}
+nav{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;padding:15px}
+nav button{background:#222;color:#e5c45b;border:1px solid #b99a35;padding:10px 15px;border-radius:20px}
+.banner{text-align:center;padding:35px 15px;background:linear-gradient(135deg,#29200b,#080808)}
+.banner h2{color:#e6c65b;font-size:25px}
+.banner p{color:#ddd}
+h2.titulo{text-align:center;color:#e6c65b;margin-top:30px}
+.produtos{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;padding:15px}
+.card{background:#202020;border:1px solid #806b2c;border-radius:12px;padding:12px;text-align:center}
+.foto{font-size:48px;padding:20px 0;background:#292929;border-radius:8px}
+.card h3{font-size:15px;min-height:35px}
+.preco{color:#e6c65b;font-size:19px;font-weight:bold}
+.card a{display:block;background:#c6a13b;color:#111;text-decoration:none;padding:11px;border-radius:7px;font-weight:bold;margin-top:10px}
+footer{text-align:center;padding:25px;color:#aaa;font-size:13px}
+</style>
+</head>
+<body>
+
+<header>
+<h1>VITRINE PREMIADA</h1>
+<p>As melhores ofertas você encontra aqui!</p>
+</header>
+
+<nav>
+<button onclick="filtrar('Todos')">Todos</button>
+<button onclick="filtrar('Achados')">Achadinhos</button>
+<button onclick="filtrar('Moda')">Moda</button>
+<button onclick="filtrar('Eletrônicos')">Eletrônicos</button>
+<button onclick="filtrar('Casa')">Casa</button>
+</nav>
+
+<section class="banner">
+<h2>OFERTAS IMPERDÍVEIS!</h2>
+<p>Produtos selecionados com preços especiais.</p>
+</section>
+
+<h2 class="titulo">🔥 OFERTAS EM DESTAQUE</h2>
+
+<main class="produtos" id="produtos"></main>
+
+<footer>
+<p>VITRINE PREMIADA © 2026</p>
+<p>Ofertas e oportunidades em um só lugar.</p>
+</footer>
+
+<script>
+const lista = [
+{nome:"Achadinho especial",preco:"R$ 19,90",categoria:"Achados",emoji:"🎁",loja:"Shopee"},
+{nome:"Moda e estilo",preco:"R$ 39,90",categoria:"Moda",emoji:"👕",loja:"SHEIN"},
+{nome:"Acessório eletrônico",preco:"R$ 29,90",categoria:"Eletrônicos",emoji:"🎧",loja:"Mercado Livre"},
+{nome:"Produto para sua casa",preco:"R$ 24,90",categoria:"Casa",emoji:"🏠",loja:"Shopee"},
+{nome:"Oferta especial",preco:"R$ 49,90",categoria:"Achados",emoji:"⭐",loja:"SHEIN"}
+];
+
+function mostrar(categoria="Todos"){
+const area=document.getElementById("produtos");
+area.innerHTML="";
+lista.filter(p=>categoria==="Todos"||p.categoria===categoria).forEach(p=>{
+area.innerHTML+=`
+<div class="card">
+<div class="foto">${p.emoji}</div>
+<h3>${p.nome}</h3>
+<div class="preco">${p.preco}</div>
+<a href="https://www.${p.loja==="SHEIN"?"shein.com.br":p.loja==="Shopee"?"shopee.com.br":"mercadolivre.com.br"}" target="_blank">VER OFERTA</a>
+</div>`;
+});
+}
+function filtrar(categoria){mostrar(categoria)}
+mostrar();
+</script>
+
+</body>
+</html>
